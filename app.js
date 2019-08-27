@@ -28,7 +28,7 @@ router.post("/add", add);
 
 async function index(ctx) {
   await ctx.render("index", {
-    title: "Todo List Application",
+    title: "Todo List Koa Application",
     todos: todos
   });
 }
