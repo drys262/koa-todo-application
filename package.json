@@ -2,20 +2,48 @@
   "name": "koa-sample",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "coverage": "nyc report --reporter=json",
+    "start": "nodemon --exec babel-node src/app.js",
+    "lint": "eslint *.js test/*.js --fix",
+    "test": "./node_modules/.bin/mocha --require @babel/register test/**/*.spec.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "core-js": "^3.2.1",
     "koa": "^2.8.1",
     "koa-bodyparser": "^4.2.1",
     "koa-ejs": "^4.2.0",
     "koa-json": "^2.0.2",
-    "koa-router": "^7.4.0"
+    "koa-router": "^7.4.0",
+    "mongoose": "^5.6.11"
   },
   "devDependencies": {
-    "nodemon": "^1.19.1"
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/register": "^7.5.5",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "chai-string": "^1.5.0",
+    "eslint": "^6.2.2",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "mocha": "^6.2.0",
+    "nodemon": "^1.19.1",
+    "nyc": "^14.1.1"
+  },
+  "babel": {
+    "env": {
+      "test": {
+        "presets": [
+          "@babel/preset-env"
+        ]
+      }
+    }
   }
 }
