@@ -41,7 +41,7 @@ app.use(async (ctx, next) => {
 // Router Middleware
 app.use(router.routes()).use(router.allowedMethods());
 
-const port = process.env.PORT || 8090;
+const port = process.env.PORT || 8080;
 
 const server = app.listen(port);
 

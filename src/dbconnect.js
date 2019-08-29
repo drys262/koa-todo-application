@@ -1,9 +1,15 @@
 import mongoose from 'mongoose';
 
 export default () => {
-  mongoose.connect('mongodb://localhost:27020/todo-application', {
-    useNewUrlParser: true,
-  });
+  if (process.env.NODE_ENV === 'production') {
+    mongoose.connect('mongodb://mongo:27017/todo-application', {
+      useNewUrlParser: true,
+    });
+  } else {
+    mongoose.connect('mongodb://localhost:27017/todo-application', {
+      useNewUrlParser: true,
+    });
+  }
 
   const db = mongoose.connection;
 

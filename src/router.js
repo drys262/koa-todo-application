@@ -1,8 +1,10 @@
 import KoaRouter from 'koa-router';
 import Todo from './models/todo.model';
+import CommonService from './services/common.service';
 
 async function index(ctx) {
-  const todos = await Todo.find();
+  const TodoService = CommonService(Todo);
+  const todos = await TodoService.getAllData();
   await ctx.render('index', {
     title: 'Todo List Koa Application',
     todos,
@@ -15,9 +17,10 @@ async function showAdd(ctx) {
 
 // Add thing
 async function add(ctx) {
+  const TodoService = CommonService(Todo);
   const { body } = ctx.request;
-  const todo = new Todo({ todo: body.todo });
-  await todo.save();
+  const data = { todo: body.todo };
+  await TodoService.create(data);
   ctx.redirect('/');
 }
 

@@ -2,6 +2,9 @@
 # https://hub.docker.com/_/node
 FROM node:10
 
+# Setup enviroment variable NODE_ENV to production
+ENV NODE_ENV=production
+
 # Create and change to the app directory.
 WORKDIR /usr/src/app
 
@@ -15,6 +18,8 @@ RUN npm install --only=production
 
 # Copy local code to the container image.
 COPY . .
+
+EXPOSE 8080
 
 # Run the web service on container startup.
 CMD [ "npm", "start" ]
